@@ -56,6 +56,12 @@ pub struct GameState {
 }
 #[tokio::main]
 async fn main() {
+    // We default to 'info' level logging. But if the `RUST_LOG` environment variable is set,
+    // we keep that value instead.
+    if env::var("RUST_LOG").is_err() {
+        env::set_var("RUST_LOG", "info");
+    }
+
     // build our application with a route
     let app = Router::new()
         // `GET /` goes to `handle_index`
