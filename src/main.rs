@@ -62,6 +62,7 @@ async fn main() {
     if env::var("RUST_LOG").is_err() {
         env::set_var("RUST_LOG", "info");
     }
+    env_logger::init();
 
     // build our application with a route
     let app = Router::new()
